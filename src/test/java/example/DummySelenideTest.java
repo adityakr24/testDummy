@@ -12,6 +12,7 @@ public class DummySelenideTest {
     @BeforeClass
     public void setUp() {
         Configuration.browser = "chrome";
+        Configuration.headless = true; // Ensure headless mode for CI
     }
 
     @Test
@@ -22,6 +23,6 @@ public class DummySelenideTest {
         // Search for 'selenide'
         Selenide.$x("//textarea[@name='q']").sendKeys("selenide");
         Selenide.$x("//textarea[@name='q']").pressEnter();
-        
+
     }
 }
