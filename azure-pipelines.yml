@@ -2,27 +2,9 @@ trigger:
 - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  name: Default
 
 steps:
-- task: JavaToolInstaller@0
-  inputs:
-    versionSpec: '11'
-    jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'PreInstalled'
-
-- script: |
-    sudo apt-get update
-    sudo apt-get install -y google-chrome-stable
-  displayName: 'Install Google Chrome'
-
-- script: |
-    wget https://chromedriver.storage.googleapis.com/$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
-    unzip chromedriver_linux64.zip
-    sudo mv chromedriver /usr/local/bin/
-    sudo chmod +x /usr/local/bin/chromedriver
-  displayName: 'Install Chromedriver'
-
 - script: mvn clean test
   displayName: 'Run Maven Tests'
   env:
